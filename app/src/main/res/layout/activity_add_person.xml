@@ -65,7 +65,7 @@
         android:layout_marginTop="14dp"
         android:ems="10"
         android:hint="Şifre"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/kadiEdit"
         app:layout_constraintTop_toBottomOf="@+id/kadiEdit" />
 

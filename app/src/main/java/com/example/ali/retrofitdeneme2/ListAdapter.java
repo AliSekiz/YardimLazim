@@ -14,25 +14,24 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class ListAdapter extends BaseAdapter {
-    List<Kullanici> kullaniciList;
+    List<PostClass> postList;
     LayoutInflater layoutInflater;
     Activity activity;
-    Kullanici kullanici;
-    public ListAdapter(List<Kullanici>kullaniciList, Activity activity){
+    public ListAdapter(List<PostClass>postList, Activity activity){
         layoutInflater=(LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.kullaniciList=kullaniciList;
+        this.postList=postList;
         this.activity=activity;
 
     }
 
     @Override
     public int getCount() {
-        return kullaniciList.size();
+        return postList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return kullaniciList.get(position);
+        return postList.get(position);
     }
 
     @Override
@@ -50,10 +49,10 @@ public class ListAdapter extends BaseAdapter {
         ImageView resimView=(ImageView)view.findViewById(R.id.imageView);
         TextView kadiTv=(TextView)view.findViewById(R.id.kadiTv);
 
-
-        resimad.setText(kullaniciList.get(position).getResimad());
-        reskategori.setText(kullaniciList.get(position).getReskategori());
-        Picasso.get().load("http://gadraj.com/alimobil/yardimlazim/"+kullaniciList.get(position).getResimad()+".jpg").into(resimView);
+        resimad.setText(postList.get(position).getResimad());
+        reskategori.setText(postList.get(position).getReskategori());
+        Picasso.get().load("http://192.168.1.103/yardimlazim/dosya/"+postList.get(position).getResimad()+".jpg").into(resimView);
+        kadiTv.setText(postList.get(position).getKadi());
         return view;
     }
 }

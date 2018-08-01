@@ -11,10 +11,6 @@ public class Kullanici {
     private String sifre;
     @SerializedName("kategori")
     private String kategori;
-    @SerializedName("resimad")
-    private String resimad;
-    @SerializedName("reskategori")
-    private String reskategori;
     @SerializedName("resim")
     private String resim;
 
@@ -48,22 +44,6 @@ public class Kullanici {
 
     public void setKategori(String kategori) {
         this.kategori = kategori;
-    }
-
-    public String getResimad() {
-        return resimad;
-    }
-
-    public void setResimad(String resimad) {
-        this.resimad = resimad;
-    }
-
-    public String getReskategori() {
-        return reskategori;
-    }
-
-    public void setReskategori(String reskategori) {
-        this.reskategori = reskategori;
     }
 
     public String getResim() {

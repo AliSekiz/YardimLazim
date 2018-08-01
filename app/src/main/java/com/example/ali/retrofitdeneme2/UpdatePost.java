@@ -32,6 +32,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UpdatePost extends AppCompatActivity {
+    Bundle bundle;
     EditText adEdit,kategoriEdit;
     ImageView resimView;
     private static final int request=777;
@@ -44,6 +45,8 @@ public class UpdatePost extends AppCompatActivity {
         adEdit=(EditText)findViewById(R.id.adEdit);
         kategoriEdit=(EditText)findViewById(R.id.kategoriEdit);
         resimView=(ImageView)findViewById(R.id.resimView);
+
+        bundle=getIntent().getExtras();
 
         ((ImageView)findViewById(R.id.resimView)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,16 +65,17 @@ public class UpdatePost extends AppCompatActivity {
         });
     }
     private void uploadPost(){
+        String kadi=bundle.getString("kadi");
         String resim=imageToString();
         String ad=adEdit.getText().toString();
         String kategori=kategoriEdit.getText().toString();
 
 
         Connect connect = ApiClient.getRetrofit().create(Connect.class);
-        Call<Kullanici>call=connect.uploadPost(ad,kategori,resim);
-        call.enqueue(new Callback<Kullanici>() {
+        Call<PostClass>call=connect.uploadPost(ad,kategori,resim,kadi);
+        call.enqueue(new Callback<PostClass>() {
             @Override
-            public void onResponse(Call<Kullanici> call, Response<Kullanici> response) {
+            public void onResponse(Call<PostClass> call, Response<PostClass> response) {
                 if(response.isSuccessful()){
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -82,7 +86,7 @@ public class UpdatePost extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Kullanici> call, Throwable t) {
+            public void onFailure(Call<PostClass> call, Throwable t) {
 
             }
         });

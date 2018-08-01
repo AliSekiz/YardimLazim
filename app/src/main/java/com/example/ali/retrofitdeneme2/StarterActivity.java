@@ -58,6 +58,7 @@ public class StarterActivity extends AppCompatActivity {
             public void onResponse(Call<List<Kullanici>> call, Response<List<Kullanici>> response) {
                 if(response.isSuccessful()) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("kadi",kadiEdit.getText().toString());
                     startActivity(intent);
                     finish();
 

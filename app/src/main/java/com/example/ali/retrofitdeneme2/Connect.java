@@ -18,15 +18,25 @@ public interface Connect {
     @POST("personJson.php")
     Call<List<Kullanici>>getKullanici(@Field("kadi")String kadi,@Field("sifre")String sifre);
 
+    @FormUrlEncoded
+    @POST("addPerson.php")
+    Call<Kullanici> addPerson(@Field("kadi")String kadi,
+                              @Field("sifre")String sifre,
+                              @Field("kategori") String kategori,
+                              @Field("resim") String resim);
+
     @GET("dataJson.php")
-    Call<List<Kullanici>>getItem();
+    Call<List<PostClass>>getItem();
 
     @FormUrlEncoded
     @POST("uploadPost.php")
-    Call<Kullanici>uploadPost(@Field("resimad")String ad,@Field("reskategori")String kategori,@Field("resim") String resim);
-
+    Call<PostClass>uploadPost(@Field("resimad")String ad,
+                              @Field("reskategori")String kategori,
+                              @Field("resim") String resim,
+                              @Field("kadi")String kadi);
     @FormUrlEncoded
-    @POST("addPerson.php")
-    Call<Kullanici> addPerson(@Field("kadi")String kadi,@Field("sifre")String sifre,@Field("kategori") String kategori,@Field("resim") String resim);
+    @POST("deletePost")
+    Call<PostClass>deletePost(@Field("resimad")String ad);
+
 
 }
