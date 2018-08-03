@@ -51,7 +51,7 @@ public class ListAdapter extends BaseAdapter {
 
         resimad.setText(postList.get(position).getResimad());
         reskategori.setText(postList.get(position).getReskategori());
-        Picasso.get().load("http://192.168.1.103/yardimlazim/dosya/"+postList.get(position).getResimad()+".jpg").into(resimView);
+        Picasso.get().load("http://fetihonal.com/yardimlazim/dosya/"+postList.get(position).getResimad()+".jpg").into(resimView);
         kadiTv.setText(postList.get(position).getKadi());
         return view;
     }

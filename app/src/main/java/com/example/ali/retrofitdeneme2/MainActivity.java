@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     public List<PostClass> postList;
     String kadi;
-    Bundle bundle;
     ListAdapter adapter;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("kadi", kadi);
                 startActivity(intent);
                 break;
+            case R.id.Yenile:
+                getItem();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -49,14 +51,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            bundle = getIntent().getExtras();
-            kadi = bundle.getString("kadi");
-        } catch (Exception e) {
-            Log.d("Hata", e.toString());
-        }
 
-        Log.d("kadi", kadi);
+
+        kadi=getIntent().getStringExtra("kadi");
         listView = (ListView) findViewById(R.id.listView);
         getItem();
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -70,12 +67,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                          iptalMethod(kadi);
+                         getItem();
                     }
                 });
                 mBuilder.setPositiveButton("Sil", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        silMethod();
+                        silMethod(postList.get(position).getResimad().toString());
+                    //    Toast.makeText(getApplicationContext(),postList.get(position).getResimad().toString(),Toast.LENGTH_LONG).show();
+                       // getItem();
                     }
                 });
                 mBuilder.show();
@@ -127,13 +127,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PostClass> call, Response<PostClass> response) {
                 if(response.isSuccessful()){
-                    startActivity(getIntent());
+                    Toast.makeText(getApplicationContext()," silindi",Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PostClass> call, Throwable t) {
 
+                Toast.makeText(getApplicationContext()," silinmedi",Toast.LENGTH_LONG).show();
             }
         });
     }

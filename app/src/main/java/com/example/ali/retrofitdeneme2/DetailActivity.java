@@ -33,7 +33,7 @@ public class DetailActivity extends AppCompatActivity {
         textView1.setText(kategoriTv);
         textView2.setText(kadiTv);
 
-        Picasso.get().load("http://192.168.1.103/yardimlazim/dosya/"+adTv+".jpg")
+        Picasso.get().load("http://fetihonal.com/yardimlazim/dosya/"+adTv+".jpg")
                 .into(imageView);
 
 

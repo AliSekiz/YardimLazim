@@ -32,7 +32,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UpdatePost extends AppCompatActivity {
-    Bundle bundle;
     EditText adEdit,kategoriEdit;
     ImageView resimView;
     private static final int request=777;
@@ -46,7 +45,6 @@ public class UpdatePost extends AppCompatActivity {
         kategoriEdit=(EditText)findViewById(R.id.kategoriEdit);
         resimView=(ImageView)findViewById(R.id.resimView);
 
-        bundle=getIntent().getExtras();
 
         ((ImageView)findViewById(R.id.resimView)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +63,7 @@ public class UpdatePost extends AppCompatActivity {
         });
     }
     private void uploadPost(){
-        String kadi=bundle.getString("kadi");
+        String kadi=getIntent().getStringExtra("kadi");
         String resim=imageToString();
         String ad=adEdit.getText().toString();
         String kategori=kategoriEdit.getText().toString();
@@ -79,6 +77,7 @@ public class UpdatePost extends AppCompatActivity {
                 if(response.isSuccessful()){
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Olmadı",Toast.LENGTH_LONG).show();
