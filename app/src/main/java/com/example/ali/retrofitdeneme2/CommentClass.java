@@ -2,15 +2,13 @@ package com.example.ali.retrofitdeneme2;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Kullanici {
+public class CommentClass {
     @SerializedName("id")
     private String id;
     @SerializedName("kadi")
     private String kadi;
-    @SerializedName("sifre")
-    private String sifre;
-    @SerializedName("kategori")
-    private String kategori;
+    @SerializedName("yorum")
+    private String yorum;
     @SerializedName("resim")
     private String resim;
 
@@ -30,20 +28,12 @@ public class Kullanici {
         this.kadi = kadi;
     }
 
-    public String getSifre() {
-        return sifre;
+    public String getYorum() {
+        return yorum;
     }
 
-    public void setSifre(String sifre) {
-        this.sifre = sifre;
-    }
-
-    public String getKategori() {
-        return kategori;
-    }
-
-    public void setKategori(String kategori) {
-        this.kategori = kategori;
+    public void setYorum(String yorum) {
+        this.yorum = yorum;
     }
 
     public String getResim() {
@@ -53,6 +43,4 @@ public class Kullanici {
     public void setResim(String resim) {
         this.resim = resim;
     }
-
-
 }

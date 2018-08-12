@@ -1,9 +1,7 @@
 package com.example.ali.retrofitdeneme2;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +18,6 @@ import java.io.ByteArrayOutputStream;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddPerson extends AppCompatActivity {
     EditText kadiEdit,sifreEdit,kategoriEdit;
@@ -58,10 +54,10 @@ public class AddPerson extends AppCompatActivity {
         String kategori=kategoriEdit.getText().toString();
 
         Connect connect=ApiClient.getRetrofit().create(Connect.class);
-        Call<Kullanici> call=connect.addPerson(kadi,sifre,kategori,resim);
-        call.enqueue(new Callback<Kullanici>() {
+        Call<PersonClass> call=connect.addPerson(kadi,sifre,kategori,resim);
+        call.enqueue(new Callback<PersonClass>() {
             @Override
-            public void onResponse(Call<Kullanici> call, Response<Kullanici> response) {
+            public void onResponse(Call<PersonClass> call, Response<PersonClass> response) {
                 if(response.isSuccessful()){
                     Intent intent = new Intent(getApplicationContext(), StarterActivity.class);
                     startActivity(intent);
@@ -74,7 +70,7 @@ public class AddPerson extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Kullanici> call, Throwable t) {
+            public void onFailure(Call<PersonClass> call, Throwable t) {
                 Toast.makeText(getApplicationContext(),"Olmadı2",Toast.LENGTH_LONG).show();
 
             }

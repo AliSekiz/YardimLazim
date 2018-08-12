@@ -10,15 +10,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StarterActivity extends AppCompatActivity {
     EditText kadiEdit,sifreEdit;
@@ -52,10 +48,10 @@ public class StarterActivity extends AppCompatActivity {
     public void oturumAc(final String kadi, String sifre){
 
         Connect connect= ApiClient.getRetrofit().create(Connect.class);
-        Call<List<Kullanici>> call=connect.getKullanici(kadi,sifre);
-        call.enqueue(new Callback<List<Kullanici>>() {
+        Call<List<PersonClass>> call=connect.getKullanici(kadi,sifre);
+        call.enqueue(new Callback<List<PersonClass>>() {
             @Override
-            public void onResponse(Call<List<Kullanici>> call, Response<List<Kullanici>> response) {
+            public void onResponse(Call<List<PersonClass>> call, Response<List<PersonClass>> response) {
                 if(response.isSuccessful()) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("kadi",kadiEdit.getText().toString());
@@ -70,7 +66,7 @@ public class StarterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Kullanici>> call, Throwable t) {
+            public void onFailure(Call<List<PersonClass>> call, Throwable t) {
                 String hata=kadiEdit.getText().toString();
                 Toast.makeText(getApplicationContext(),hata+" böyle bir kullanıcı bulunamadı.",Toast.LENGTH_LONG).show();
                 Log.d("Hata","Burdayımmmm");

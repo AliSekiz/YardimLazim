@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         silMethod(postList.get(position).getResimad().toString());
-                    //    Toast.makeText(getApplicationContext(),postList.get(position).getResimad().toString(),Toast.LENGTH_LONG).show();
                        // getItem();
                     }
                 });
