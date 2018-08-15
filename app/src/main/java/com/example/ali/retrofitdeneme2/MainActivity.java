@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         silMethod(postList.get(position).getResimad().toString());
-                       // getItem();
+                        getItem();
                     }
                 });
                 mBuilder.show();
@@ -125,15 +125,45 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<PostClass>() {
             @Override
             public void onResponse(Call<PostClass> call, Response<PostClass> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(getApplicationContext()," silindi",Toast.LENGTH_LONG).show();
+
+                if (response.isSuccessful()) {
+
+                    Toast.makeText(getApplicationContext(), " +", Toast.LENGTH_LONG).show();
+                } else {
+                    switch (response.code()) {
+                        case 301:
+                            Toast.makeText(getApplicationContext(), "Moved Permanently", Toast.LENGTH_LONG).show();
+                            break;
+                        case 302:
+                            Toast.makeText(getApplicationContext(), "Found(Moved Permanently)", Toast.LENGTH_LONG).show();
+                            break;
+                        case 401:
+                            Toast.makeText(getApplicationContext(), "Yetkisiz", Toast.LENGTH_LONG).show();
+                            break;
+                        case 403:
+                            Toast.makeText(getApplicationContext(), "Forbidden", Toast.LENGTH_LONG).show();
+                            break;
+                        case 404:
+                            Toast.makeText(getApplicationContext(), "Not", Toast.LENGTH_LONG).show();
+                            break;
+                        case 410:
+                            Toast.makeText(getApplicationContext(), "Gone", Toast.LENGTH_LONG).show();
+                            break;
+                        case 500:
+                            Toast.makeText(getApplicationContext(), "Server Error", Toast.LENGTH_LONG).show();
+                            break;
+                        case 503:
+                            Toast.makeText(getApplicationContext(), "Service Unavailable", Toast.LENGTH_LONG).show();
+                            break;
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<PostClass> call, Throwable t) {
 
-                Toast.makeText(getApplicationContext()," silinmedi",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext()," -",Toast.LENGTH_LONG).show();
+                getItem();
             }
         });
     }

@@ -37,7 +37,7 @@ public interface Connect {
                               @Field("resim") String resim,
                               @Field("kadi")String kadi);
     @FormUrlEncoded
-    @POST("deletePost")
+    @POST("deletePost.php")
     Call<PostClass>deletePost(@Field("resimad")String ad);
 
 

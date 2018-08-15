@@ -45,7 +45,7 @@ public class StarterActivity extends AppCompatActivity {
         });
 
     }
-    public void oturumAc(final String kadi, String sifre){
+    public void oturumAc(String kadi, String sifre){
 
         Connect connect= ApiClient.getRetrofit().create(Connect.class);
         Call<List<PersonClass>> call=connect.getKullanici(kadi,sifre);
